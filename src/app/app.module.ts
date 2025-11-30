@@ -28,9 +28,9 @@ import {
   simpleGithub,
 } from '@ng-icons/simple-icons';
 
-import {ionMenuOutline, ionClose} from '@ng-icons/ionicons'
+import { ionMenuOutline, ionClose } from '@ng-icons/ionicons';
 
-import {diNodejsPlainWordmark} from '@ng-icons/devicon/plain'
+import { diNodejsPlainWordmark } from '@ng-icons/devicon/plain';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -42,6 +42,7 @@ import { ContactFormComponent } from './contact-form/contact-form.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -51,11 +52,12 @@ import { ToastrModule } from 'ngx-toastr';
     AboutComponent,
     SkillComponent,
     ContactFormComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-      FormsModule,
+    FormsModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot({
       timeOut: 3000,
@@ -81,7 +83,7 @@ import { ToastrModule } from 'ngx-toastr';
       simpleGit,
       diNodejsPlainWordmark,
       ionMenuOutline,
-      ionClose
+      ionClose,
     }),
   ],
   providers: [provideClientHydration(withEventReplay())],
