@@ -12,15 +12,15 @@ export class SkillComponent {
     {
       category: 'Languages',
       items: [
-        { title: 'HTML', icon: 'simpleHtml5', displayValue: 'HTML5' }, // Already done
-        { title: 'CSS', icon: 'simpleCss', displayValue: 'CSS3' }, // Added
+        { title: 'HTML', icon: 'simpleHtml5', displayValue: 'HTML5' },
+        { title: 'CSS', icon: 'simpleCss', displayValue: 'CSS3' },
         {
           title: 'Javascript',
           icon: 'simpleJavascript',
           displayValue: 'JavaScript',
-        }, // Added
-        { title: 'Python', icon: 'simplePython', displayValue: 'Python' }, // Added
-        { title: 'Java', icon: 'bootstrapFiletypeJava', displayValue: 'Java' }, // Added
+        },
+        { title: 'Python', icon: 'simplePython', displayValue: 'Python' },
+        { title: 'Java', icon: 'bootstrapFiletypeJava', displayValue: 'Java' },
       ],
     },
     {
@@ -30,19 +30,19 @@ export class SkillComponent {
           title: 'Node.js',
           icon: 'diNodejsPlainWordmark',
           displayValue: 'Node.js',
-        }, // Added
-        { title: 'NestJS', icon: 'simpleNestjs', displayValue: 'NestJS' }, // Added
-        { title: 'MongoDB', icon: 'simpleMongodb', displayValue: 'MongoDB' }, // Added
-        { title: 'MySQL', icon: ' simpleMysql', displayValue: 'MySQL' }, // Added
-        { title: 'Angular', icon: 'simpleAngular', displayValue: 'Angular' }, // Added
+        },
+        { title: 'NestJS', icon: 'simpleNestjs', displayValue: 'NestJS' },
+        { title: 'Angular', icon: 'simpleAngular', displayValue: 'Angular' },
+        { title: 'MongoDB', icon: 'simpleMongodb', displayValue: 'MongoDB' },
+        { title: 'MySQL', icon: ' simpleMysql', displayValue: 'MySQL' },
       ],
     },
     {
       category: 'Tools & Systems',
       items: [
-        { title: 'Docker', icon: 'simpleDocker', displayValue: 'Docker' }, // Added
-        { title: 'Clickup', icon: 'simpleClickup', displayValue: 'ClickUp' }, // Added
-        { title: 'Git', icon: 'simpleGit', displayValue: 'Git' }, // Added
+        { title: 'Docker', icon: 'simpleDocker', displayValue: 'Docker' },
+        { title: 'Clickup', icon: 'simpleClickup', displayValue: 'ClickUp' },
+        { title: 'Git', icon: 'simpleGit', displayValue: 'Git' },
       ],
     },
   ];
