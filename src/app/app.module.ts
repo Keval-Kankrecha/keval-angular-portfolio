@@ -26,6 +26,7 @@ import {
   simpleGit,
   simpleInstagram,
   simpleGithub,
+  simpleRabbitmq,
 } from '@ng-icons/simple-icons';
 
 import { ionMenuOutline, ionClose } from '@ng-icons/ionicons';
@@ -81,6 +82,7 @@ import { FooterComponent } from './footer/footer.component';
       simpleDocker,
       simpleClickup,
       simpleGit,
+      simpleRabbitmq,
       diNodejsPlainWordmark,
       ionMenuOutline,
       ionClose,

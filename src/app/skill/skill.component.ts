@@ -38,11 +38,12 @@ export class SkillComponent {
       ],
     },
     {
-      category: 'Tools & Systems',
+      category: 'Platforms & Tools',
       items: [
         { title: 'Docker', icon: 'simpleDocker', displayValue: 'Docker' },
         { title: 'Clickup', icon: 'simpleClickup', displayValue: 'ClickUp' },
         { title: 'Git', icon: 'simpleGit', displayValue: 'Git' },
+        { title: 'RabbitMQ', icon: 'simpleRabbitmq', displayValue: 'RabbitMQ' },
       ],
     },
   ];
