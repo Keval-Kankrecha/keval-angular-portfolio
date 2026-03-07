@@ -7,5 +7,5 @@ import { Component, Input } from '@angular/core';
   styleUrl: './home.component.scss',
 })
 export class HomeComponent {
-  cartoon = 'assets/header-img.png'; 
+  cartoon = 'assets/header-img.png';
 }

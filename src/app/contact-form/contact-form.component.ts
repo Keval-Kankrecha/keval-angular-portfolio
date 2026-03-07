@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
-import { ToastrService } from 'ngx-toastr';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import emailjs from '@emailjs/browser';
+import { ToastService } from '../services/toast.service';
 
 @Component({
   selector: 'app-contact-form',
@@ -8,20 +9,27 @@ import emailjs from '@emailjs/browser';
   styleUrls: ['./contact-form.component.scss'],
   standalone: false,
 })
-export class ContactFormComponent {
-  formData = {
-    name: '',
-    email: '',
-    message: '',
-  };
-
+export class ContactFormComponent implements OnInit {
+  contactForm!: FormGroup;
   loading = false;
 
-  constructor(private toastr: ToastrService) {}
+  constructor(
+    private fb: FormBuilder,
+    private toastService: ToastService,
+  ) {}
 
-  sendEmail() {
-    if (!this.formData.name || !this.formData.email || !this.formData.message) {
-      this.toastr.error('Please fill all fields');
+  ngOnInit(): void {
+    this.contactForm = this.fb.group({
+      name: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      message: ['', Validators.required],
+    });
+  }
+
+  sendEmail(): void {
+    if (this.contactForm.invalid) {
+      this.contactForm.markAllAsTouched();
+      this.toastService.error('Please fill all fields');
       return;
     }
 
@@ -32,17 +40,28 @@ export class ContactFormComponent {
     const publicKey = 'JPtOYOMj9rFB42WTL';
 
     emailjs
-      .send(serviceID, templateID, this.formData, publicKey)
+      .send(serviceID, templateID, this.contactForm.value, publicKey)
       .then(() => {
-        this.toastr.success('Message sent successfully!','Success');
-        this.formData = { name: '', email: '', message: '' };
+        this.toastService.success('Message sent successfully!');
+        this.contactForm.reset();
         this.loading = false;
-        this.toastr.success('Message sent successfully!');
       })
       .catch((error) => {
         console.error('Email send error:', error);
-        this.toastr.error('Failed to send message, please try again later.');
+        this.toastService.error(
+          'Failed to send message, please try again later.',
+        );
         this.loading = false;
       });
+  }
+
+  get name() {
+    return this.contactForm.get('name');
+  }
+  get email() {
+    return this.contactForm.get('email');
+  }
+  get message() {
+    return this.contactForm.get('message');
   }
 }

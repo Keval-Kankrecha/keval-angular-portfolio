@@ -1,47 +1,45 @@
 <div class="contact-window" id="contact">
   <h1>Let's Get in Touch.</h1>
   <p>Discuss a project or just want to say Hi? My inbox is open for all.</p>
-
   <div class="contact-container">
     <form
-      #contactForm="ngForm"
+      [formGroup]="contactForm"
       (ngSubmit)="sendEmail()"
       class="contact-wrapper-right"
     >
       <input
         id="name"
         type="text"
-        name="name"
+        formControlName="name"
         placeholder="Full Name"
-        required
-        [(ngModel)]="formData.name"
       />
+      <div *ngIf="name?.invalid && name?.touched" class="error">
+        Name is required.
+      </div>
 
       <input
         id="email"
         type="email"
-        name="email"
+        formControlName="email"
         placeholder="Email ID"
-        required
-        [(ngModel)]="formData.email"
       />
+      <div *ngIf="email?.invalid && email?.touched" class="error">
+        <span *ngIf="email?.errors?.['required']">Email is required.</span>
+        <span *ngIf="email?.errors?.['email']">Enter a valid email.</span>
+      </div>
 
       <textarea
         id="message"
-        name="message"
+        formControlName="message"
         rows="5"
         placeholder="Share your thoughts and insights here; your feedback means a lot."
-        required
-        [(ngModel)]="formData.message"
       ></textarea>
+      <div *ngIf="message?.invalid && message?.touched" class="error">
+        Message is required.
+      </div>
 
-      <button
-        class="btn"
-        id="submitBtn"
-        type="submit"
-        >
-        <!-- [disabled]="!contactForm.valid || loading" -->
-        {{ loading ? 'Sending...' : 'Send Message' }}
+      <button class="btn" id="submitBtn" type="submit" [disabled]="loading">
+        {{ loading ? "Sending..." : "Send Message" }}
       </button>
     </form>
   </div>

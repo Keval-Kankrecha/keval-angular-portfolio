@@ -1,9 +1,16 @@
 import { NgModule } from '@angular/core';
-import {
-  BrowserModule,
-  provideClientHydration,
-  withEventReplay,
-} from '@angular/platform-browser';
+import { BrowserModule } from '@angular/platform-browser';
+
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { SkillComponent } from './skill/skill.component';
+import { FooterComponent } from './footer/footer.component';
+import { HomeComponent } from './home/home.component';
+import { HeaderComponent } from './header/header.component';
+import { AboutComponent } from './about/about.component';
+import { ContactFormComponent } from './contact-form/contact-form.component';
+import { ReactiveFormsModule } from '@angular/forms';
+
 import { NgIconsModule } from '@ng-icons/core';
 
 import {
@@ -28,43 +35,23 @@ import {
   simpleGithub,
   simpleRabbitmq,
 } from '@ng-icons/simple-icons';
-
 import { ionMenuOutline, ionClose } from '@ng-icons/ionicons';
 
 import { diNodejsPlainWordmark } from '@ng-icons/devicon/plain';
-
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
-import { HomeComponent } from './home/home.component';
-import { AboutComponent } from './about/about.component';
-import { SkillComponent } from './skill/skill.component';
-import { ContactFormComponent } from './contact-form/contact-form.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule } from '@angular/forms';
-import { ToastrModule } from 'ngx-toastr';
-import { FooterComponent } from './footer/footer.component';
-
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
-    HomeComponent,
-    AboutComponent,
     SkillComponent,
-    ContactFormComponent,
     FooterComponent,
+    HomeComponent,
+    HeaderComponent,
+    AboutComponent,
+    ContactFormComponent,
   ],
   imports: [
+    ReactiveFormsModule,
     BrowserModule,
     AppRoutingModule,
-    FormsModule,
-    BrowserAnimationsModule,
-    ToastrModule.forRoot({
-      timeOut: 3000,
-      positionClass: 'toast-top-right',
-      preventDuplicates: true,
-    }),
     NgIconsModule.withIcons({
       bootstrapGithub,
       bootstrapFiletypeJava,
@@ -88,7 +75,7 @@ import { FooterComponent } from './footer/footer.component';
       ionClose,
     }),
   ],
-  providers: [provideClientHydration(withEventReplay())],
+  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
