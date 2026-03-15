@@ -274,6 +274,7 @@ ul {
   bottom: 0;
   right: 0;
   z-index: -3;
+  top: 11%;
 }
 @media screen and (max-width: 950px) {
   .mask .bg {
@@ -320,15 +321,12 @@ ul {
   border-radius: 15px;
 }
 .techLogo {
-  // border: 1px solid rgba(255, 255, 255, 0.8);
-  // border-radius: 15px;
   display: flex !important;
   align-items: center;
   justify-content: center;
   height: 40px !important;
   width: auto !important;
   overflow: visible !important;
-  // padding: 30px;
   transition: 0.3s ease-in-out;
 }
 .contact-container,
@@ -546,7 +544,6 @@ textarea:focus {
 .about-container {
   display: flex;
   margin: 80px 13vw 0 18vw;
-  padding-top: 60px;
 }
 .profile-photo {
   margin-left: 10px;
@@ -635,10 +632,16 @@ textarea:focus {
     max-width: 400px;
   }
 }
+
+/* ========================================
+   MOBILE FIX — max-width: 750px
+   Centers content and background image
+   ======================================== */
 @media screen and (max-width: 750px) {
   .home .content {
     align-items: center;
-    padding: 0 12vw;
+    padding: 0 12vw 0 8vw;
+    text-align: center;
   }
   .home .content .name {
     font-size: 20px;
@@ -647,14 +650,30 @@ textarea:focus {
   }
   .home .content .staticTitle {
     font-size: 12vw;
+    justify-content: center;
+    width: 100%;
   }
   .home .content .staticTitle .hrLine {
-    width: 22vw;
+    display: none;
   }
   .home .content .dynamicTitle {
     font-size: 12vw;
     line-height: 60px;
+    width: 100%;
+    text-align: center;
   }
+  .home .content .dynamicTitle li {
+    text-align: center;
+  }
+
+  /* Center the background image on mobile */
+  .mask .bg {
+    left: 30%;
+    right: unset;
+    transform: translateX(-50%);
+    opacity: 35%;
+  }
+
   .about-project .btn,
   .about-project .desc,
   .hire {
@@ -691,9 +710,9 @@ textarea:focus {
   .about-container {
     margin-left: 9vw;
     margin-top: 0;
-    padding-top: 70px;
   }
 }
+
 .skillset {
   display: flex;
   flex-wrap: wrap;
@@ -725,4 +744,13 @@ textarea:focus {
   border-top: 1px solid rgba(255, 255, 255, 0.3);
   white-space: nowrap;
   display: flex;
+}
+html,
+body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+.home {
+  overflow: hidden;
+  position: relative;
 }
