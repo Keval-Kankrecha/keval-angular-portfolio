@@ -80,7 +80,6 @@ private buildLines(): BootLine[] {
       'INITIALIZING',
       'LOADING',
       'PROCESSING',
-      'FINALIZING',
       'GRANTING ACCESS',
     ];
 
