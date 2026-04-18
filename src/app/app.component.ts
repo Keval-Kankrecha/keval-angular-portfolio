@@ -9,6 +9,12 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'keval-ng-portfolio';
 
+  showBoot = true;
+
+  onBootComplete(): void {
+    this.showBoot = false;
+  }
+
   goToSection(id: string): void {
     const element = document.getElementById(id);
     if (element) {

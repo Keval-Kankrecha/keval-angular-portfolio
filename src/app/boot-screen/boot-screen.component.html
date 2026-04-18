@@ -1,0 +1,34 @@
+<div class="boot-overlay" [class.exit]="isExiting">
+
+  <!-- Skip hint -->
+  <div class="skip-hint">CLICK ANYWHERE TO SKIP BOOTING</div>
+
+  <!-- Scanline overlay -->
+  <div class="scanlines"></div>
+
+  <!-- CRT flicker -->
+  <div class="flicker"></div>
+
+  <!-- Log area -->
+  <div class="boot-log" id="boot-log">
+    <div
+      *ngFor="let line of visibleLines"
+      class="log-line"
+      [ngClass]="line.type"
+    >
+      <ng-container *ngIf="line.text; else emptyLine">{{ line.text }}</ng-container>
+      <ng-template #emptyLine>&nbsp;</ng-template>
+    </div>
+    <span class="cursor">_</span>
+  </div>
+
+  <!-- Progress bar -->
+  <div class="boot-footer">
+    <span class="boot-label">{{ progressLabel }}</span>
+    <div class="progress-track">
+      <div class="progress-fill" [style.width.%]="progress"></div>
+    </div>
+    <span class="progress-pct">{{ progress | number:'1.0-0' }}%</span>
+  </div>
+
+</div>

@@ -12,4 +12,5 @@ export class FooterComponent {
     marginRight: '7px',
     marginLeft: '7px',
   };
+  currentYear = new Date().getFullYear();
 }
