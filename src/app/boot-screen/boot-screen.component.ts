@@ -29,7 +29,6 @@ export class BootScreenComponent implements OnInit, OnDestroy {
   skipped = false;
 
   private allLines: BootLine[] = [];
-  
   private timers: any[] = [];
   private progressInterval: any;
 
@@ -94,7 +93,7 @@ export class BootScreenComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.allLines = this.buildLines(); // fresh genId() on every load
+    this.allLines = this.buildLines();
     this.startBoot();
   }
 
@@ -110,7 +109,7 @@ export class BootScreenComponent implements OnInit, OnDestroy {
   }
 
   private startBoot(): void {
-    let prog = 0;
+    const totalTime = this.allLines[this.allLines.length - 1].delay + 900;
     const labels = [
       'INITIALIZING',
       'LOADING MODULES',
@@ -119,15 +118,17 @@ export class BootScreenComponent implements OnInit, OnDestroy {
       'GRANTING ACCESS',
     ];
 
+    const startTime = Date.now();
+
     this.progressInterval = setInterval(() => {
-      prog += Math.random() * 3 + 0.5;
+      const elapsed = Date.now() - startTime;
+      const prog = Math.min((elapsed / totalTime) * 100, 100);
+      this.progress = prog;
+      this.progressLabel =
+        labels[Math.floor((prog / 100) * (labels.length - 1))];
       if (prog >= 100) {
-        prog = 100;
         clearInterval(this.progressInterval);
       }
-      this.progress = Math.min(prog, 100);
-      this.progressLabel =
-        labels[Math.floor((this.progress / 100) * (labels.length - 1))];
     }, 60);
 
     this.allLines.forEach((line) => {
@@ -141,8 +142,7 @@ export class BootScreenComponent implements OnInit, OnDestroy {
       this.timers.push(t);
     });
 
-    const completionTime = this.allLines[this.allLines.length - 1].delay + 900;
-    const doneTimer = setTimeout(() => this.exitBoot(), completionTime);
+    const doneTimer = setTimeout(() => this.exitBoot(), totalTime);
     this.timers.push(doneTimer);
   }
 
