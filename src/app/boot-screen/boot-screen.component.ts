@@ -36,61 +36,27 @@ export class BootScreenComponent implements OnInit, OnDestroy {
     return Math.random().toString(36).substring(2, 8).toUpperCase();
   }
 
-  private buildLines(): BootLine[] {
-    return [
-      { text: 'BIOS v3.0.0 — KEVAL/CORP SYSTEMS', type: 'dim', delay: 0 },
-      { text: 'Copyright (C) 2026 Keval Kankrecha. All Rights Reserved.', type: 'dim', delay: 200 },
-      { text: '', type: 'dim', delay: 300 },
+private buildLines(): BootLine[] {
+  return [
+    { text: 'KEVAL/CORP SYSTEMS — v3.0.0', type: 'dim', delay: 0 },
+    { text: 'Boot sequence initiated...', type: 'normal', delay: 300 },
 
-      { text: 'Initializing hardware interfaces...', type: 'normal', delay: 500 },
-      { text: 'CPU: Intel Core i7-12700K @ 3.60GHz [OK]', type: 'normal', delay: 800 },
-      { text: 'RAM: 32768 MB DDR5 [OK]', type: 'normal', delay: 1050 },
-      { text: 'GPU: NVIDIA RTX 4070 [OK]', type: 'normal', delay: 1250 },
+    { text: '', type: 'dim', delay: 500 },
 
-      { text: '', type: 'dim', delay: 1350 },
+    { text: 'Initializing core systems...', type: 'normal', delay: 700 },
+    { text: 'CPU / RAM / Network  ............. [OK]', type: 'normal', delay: 1000 },
 
-      { text: 'Booting core systems...', type: 'normal', delay: 1450 },
-      { text: 'Loading kernel modules...', type: 'normal', delay: 1600 },
+    { text: '', type: 'dim', delay: 1200 },
 
-      { text: '> angular.core         [████████████] LOADED', type: 'accent', delay: 1800 },
-      { text: '> nestjs.framework     [████████████] LOADED', type: 'accent', delay: 2000 },
-      { text: '> docker.runtime       [████████████] LOADED', type: 'accent', delay: 2200 },
-      { text: '> mongodb.driver       [████████████] LOADED', type: 'accent', delay: 2400 },
-      { text: '> rabbitmq.service     [████████████] LOADED', type: 'accent', delay: 2600 },
+    { text: `Session ID: ${this.genId()}-${this.genId()}`, type: 'normal', delay: 1600 },
+    { text: `Browser ID: ${this.genId()}-${this.genId()}`, type: 'normal', delay: 1600 },
 
-      { text: '', type: 'dim', delay: 2700 },
+    { text: '', type: 'dim', delay: 1800 },
 
-      { text: 'Initializing AI modules...', type: 'normal', delay: 2850 },
-      { text: '> llm.integration      [████████████] READY', type: 'accent', delay: 3050 },
-      { text: '> prompt.engine        [████████████] OPTIMIZED', type: 'accent', delay: 3250 },
-
-      { text: '', type: 'dim', delay: 3350 },
-
-      { text: 'Mounting filesystem...', type: 'normal', delay: 3500 },
-      { text: 'DETECTED_SYSTEM: [ Linux // Developer Environment ]', type: 'normal', delay: 3700 },
-      { text: 'USER: Keval Kankrecha [Software Engineer]', type: 'accent', delay: 3900 },
-      { text: `BROWSER_ID: [ *K3VAL-DEV-${this.genId()} ]`, type: 'normal', delay: 4100 },
-
-      { text: '', type: 'dim', delay: 4200 },
-
-      { text: 'Establishing secure connection...', type: 'normal', delay: 4400 },
-      { text: 'Connection established.', type: 'success', delay: 4700 },
-
-      { text: 'Enabling developer mode...', type: 'normal', delay: 4900 },
-      { text: 'Debugging tools: ACTIVE', type: 'accent', delay: 5100 },
-
-      { text: '', type: 'dim', delay: 5200 },
-
-      { text: 'Loading portfolio modules...', type: 'normal', delay: 5400 },
-      { text: '> projects.showcase    [████████████] READY', type: 'accent', delay: 5600 },
-      { text: '> experience.timeline  [████████████] READY', type: 'accent', delay: 5800 },
-
-      { text: '', type: 'dim', delay: 6000 },
-
-      { text: 'Access Granted. Welcome to KevalOS.', type: 'success', delay: 6300 },
-      { text: 'Crafting code. Solving problems. Building the future.', type: 'success', delay: 6600 },
-    ];
-  }
+    { text: 'Access Granted.', type: 'success', delay: 2000 },
+    { text: 'Welcome to my portfolio.', type: 'success', delay: 2200 },
+  ];
+}
 
   ngOnInit(): void {
     this.allLines = this.buildLines();
@@ -112,9 +78,9 @@ export class BootScreenComponent implements OnInit, OnDestroy {
     const totalTime = this.allLines[this.allLines.length - 1].delay + 900;
     const labels = [
       'INITIALIZING',
-      'LOADING MODULES',
-      'MOUNTING FS',
-      'CONNECTING',
+      'LOADING',
+      'PROCESSING',
+      'FINALIZING',
       'GRANTING ACCESS',
     ];
 
