@@ -36,27 +36,39 @@ export class BootScreenComponent implements OnInit, OnDestroy {
     return Math.random().toString(36).substring(2, 8).toUpperCase();
   }
 
-private buildLines(): BootLine[] {
-  return [
-    { text: 'KEVAL/CORP SYSTEMS — v3.0.0', type: 'dim', delay: 0 },
-    { text: 'Boot sequence initiated...', type: 'normal', delay: 300 },
+  private buildLines(): BootLine[] {
+    return [
+      { text: 'KEVAL/CORP SYSTEMS — v3.0.0', type: 'dim', delay: 0 },
+      { text: 'Boot sequence initiated...', type: 'normal', delay: 300 },
 
-    { text: '', type: 'dim', delay: 500 },
+      { text: '', type: 'dim', delay: 500 },
 
-    { text: 'Initializing core systems...', type: 'normal', delay: 700 },
-    { text: 'CPU / RAM / Network  ............. [OK]', type: 'normal', delay: 1000 },
+      { text: 'Initializing core systems...', type: 'normal', delay: 700 },
+      {
+        text: 'CPU / RAM / Network  ............. [OK]',
+        type: 'normal',
+        delay: 1000,
+      },
 
-    { text: '', type: 'dim', delay: 1200 },
+      { text: '', type: 'dim', delay: 1200 },
 
-    { text: `Session ID: ${this.genId()}-${this.genId()}`, type: 'normal', delay: 1600 },
-    { text: `Browser ID: ${this.genId()}-${this.genId()}`, type: 'normal', delay: 1600 },
+      {
+        text: `Session ID: ${this.genId()}-${this.genId()}`,
+        type: 'normal',
+        delay: 1600,
+      },
+      {
+        text: `Browser ID: ${this.genId()}-${this.genId()}`,
+        type: 'normal',
+        delay: 1600,
+      },
 
-    { text: '', type: 'dim', delay: 1800 },
+      { text: '', type: 'dim', delay: 1800 },
 
-    { text: 'Access Granted.', type: 'success', delay: 2000 },
-    { text: 'Welcome to my portfolio.', type: 'success', delay: 2200 },
-  ];
-}
+      { text: 'Access Granted.', type: 'success', delay: 2000 },
+      { text: 'Welcome to my portfolio.', type: 'success', delay: 2200 },
+    ];
+  }
 
   ngOnInit(): void {
     this.allLines = this.buildLines();
@@ -75,26 +87,29 @@ private buildLines(): BootLine[] {
   }
 
   private startBoot(): void {
-    const totalTime = this.allLines[this.allLines.length - 1].delay + 900;
-    const labels = [
-      'INITIALIZING',
-      'LOADING',
-      'PROCESSING',
-      'GRANTING ACCESS',
-    ];
+    const totalTime = this.allLines[this.allLines.length - 1].delay + 1900;
+    const labels = ['PROCESSING', 'GRANTING ACCESS'];
 
     const startTime = Date.now();
 
     this.progressInterval = setInterval(() => {
       const elapsed = Date.now() - startTime;
-      const prog = Math.min((elapsed / totalTime) * 100, 100);
+
+      // smooth easing
+      const raw = Math.min(elapsed / totalTime, 1);
+      const eased = 1 - Math.pow(1 - raw, 3);
+
+      const prog = eased * 100;
       this.progress = prog;
-      this.progressLabel =
-        labels[Math.floor((prog / 100) * (labels.length - 1))];
-      if (prog >= 100) {
+
+      // label switch
+      this.progressLabel = prog < 75 ? labels[0] : labels[1];
+
+      // just stop interval when done (no label override)
+      if (raw >= 1) {
         clearInterval(this.progressInterval);
       }
-    }, 60);
+    }, 50);
 
     this.allLines.forEach((line) => {
       const t = setTimeout(() => {
@@ -116,7 +131,10 @@ private buildLines(): BootLine[] {
     this.clearAll();
     this.progress = 100;
     this.progressLabel = 'ACCESS GRANTED';
-    this.visibleLines = this.allLines.map((l) => ({ text: l.text, type: l.type }));
+    this.visibleLines = this.allLines.map((l) => ({
+      text: l.text,
+      type: l.type,
+    }));
     setTimeout(() => this.exitBoot(), 400);
   }
 
