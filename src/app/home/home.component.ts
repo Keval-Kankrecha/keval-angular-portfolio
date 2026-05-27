@@ -16,7 +16,7 @@ export class HomeComponent implements OnInit {
     'FullStack Developer',
     'Node.js Developer',
     'NestJS Developer',
-    'REST API Developer',
+    'REST-API Developer',
     'Backend Developer',
   ];
 
