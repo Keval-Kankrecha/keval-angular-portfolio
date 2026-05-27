@@ -12,16 +12,12 @@ export class HomeComponent implements OnInit {
   jobTitles = [
     'Software Engineer',
     'Software Developer',
-    'Program Developer',
-    'API Developer',
     'Web Developer',
     'FullStack Developer',
-    'Database Engineer',
-    'Node Developer',
-    'Web Engineer',
-    'Data Engineer',
-    'Technical Developer',
-    'AI Integrator',
+    'Node.js Developer',
+    'NestJS Developer',
+    'REST API Developer',
+    'Backend Developer',
   ];
 
   firstWord = '';
