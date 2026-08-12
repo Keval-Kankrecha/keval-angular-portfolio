@@ -9,7 +9,8 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'keval-ng-portfolio';
 
-  showBoot = true;
+  // The boot animation belongs to the portfolio; /bio-data opens straight up.
+  showBoot = window.location.pathname.replace(/\/+$/, '') === '';
 
   onBootComplete(): void {
     this.showBoot = false;

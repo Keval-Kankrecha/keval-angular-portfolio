@@ -4,10 +4,5 @@
 ></app-boot-screen>
 
 <ng-container *ngIf="!showBoot">
-  <app-header> </app-header>
-  <app-home></app-home>
-  <app-about></app-about>
-  <app-skill></app-skill>
-  <app-contact-form></app-contact-form>
-  <app-footer></app-footer>
+  <router-outlet></router-outlet>
 </ng-container>

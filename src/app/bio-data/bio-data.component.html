@@ -1,0 +1,97 @@
+<!-- Ornamental corner set and the footer rule repeat on every page. -->
+<ng-template #corners>
+  <span class="corner corner--tl"></span>
+  <span class="corner corner--tr"></span>
+  <span class="corner corner--bl"></span>
+  <span class="corner corner--br"></span>
+</ng-template>
+
+<ng-template #foot>
+  <footer class="foot">
+    <div class="divider" aria-hidden="true">&#10022;</div>
+    <a [href]="'https://' + site">{{ site }}</a>
+  </footer>
+</ng-template>
+
+<!-- ============================== GATE ============================== -->
+<div class="gate" *ngIf="!unlocked">
+  <form class="gate__card" (submit)="unlock($event, pwd.value); pwd.value = ''">
+    <ng-container *ngTemplateOutlet="corners"></ng-container>
+
+    <h1 class="gate__title">Bio Data</h1>
+    <div class="divider" aria-hidden="true">&#10022;</div>
+    <p class="gate__hint">This sheet is private. Enter the passphrase to view it.</p>
+
+    <label class="gate__label" for="passphrase">Passphrase</label>
+    <input
+      class="gate__input"
+      id="passphrase"
+      #pwd
+      type="password"
+      autocomplete="current-password"
+      autofocus
+    />
+
+    <button class="gate__btn" type="submit">Unlock</button>
+  </form>
+
+  <div class="toast" role="alert" *ngIf="toastMessage">{{ toastMessage }}</div>
+</div>
+
+<!-- ============================= PAGE 1 ============================= -->
+<section class="page" *ngIf="unlocked">
+  <div class="card">
+    <ng-container *ngTemplateOutlet="corners"></ng-container>
+
+    <header class="head">
+      <div class="arch">
+        <img [src]="portrait" [alt]="fullName" width="330" height="410" />
+      </div>
+      <h1 class="name">{{ fullName }}</h1>
+      <p class="tagline">{{ tagline }}</p>
+      <div class="divider" aria-hidden="true">&#10022;</div>
+    </header>
+
+    <div class="sections">
+      <section class="section" *ngFor="let section of sections">
+        <h2>{{ section.heading }}</h2>
+        <dl class="fields">
+          <ng-container *ngFor="let field of section.fields">
+            <dt>{{ field.label }}</dt>
+            <dd>
+              <span *ngFor="let line of lines(field.value)">{{ line }}</span>
+            </dd>
+          </ng-container>
+        </dl>
+      </section>
+    </div>
+
+    <ng-container *ngTemplateOutlet="foot"></ng-container>
+  </div>
+</section>
+
+<!-- ======================= PAGE 2 — photographs ======================= -->
+<section class="page page--photos" *ngIf="unlocked && photos.length">
+  <div class="card">
+    <ng-container *ngTemplateOutlet="corners"></ng-container>
+
+    <header class="head">
+      <h2 class="name name--sub">Photographs</h2>
+      <div class="divider" aria-hidden="true">&#10022;</div>
+    </header>
+
+    <div class="gallery">
+      <figure *ngFor="let photo of photos">
+        <img
+          [src]="photo"
+          [alt]="fullName"
+          loading="lazy"
+          decoding="async"
+          (error)="onPhotoError(photo)"
+        />
+      </figure>
+    </div>
+
+    <ng-container *ngTemplateOutlet="foot"></ng-container>
+  </div>
+</section>
