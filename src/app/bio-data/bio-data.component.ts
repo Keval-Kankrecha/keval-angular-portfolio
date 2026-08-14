@@ -62,7 +62,6 @@ export class BioDataComponent implements OnInit, OnDestroy {
         { label: 'Education', value: 'B.E. in Computer Engineering' },
         { label: 'Designation', value: 'Software Engineer' },
         { label: 'Company', value: 'Kevit Technologies, Rajkot' },
-        { label: 'Annual Income', value: '₹ 6 LPA CTC' },
       ],
     },
     {
