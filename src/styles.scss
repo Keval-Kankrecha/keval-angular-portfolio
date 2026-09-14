@@ -543,10 +543,14 @@ textarea:focus {
 }
 .about-container {
   display: flex;
+  align-items: center;
+  gap: 40px;
   margin: 80px 13vw 0 18vw;
 }
+/* Fixed track: without it the photo is only as wide as flex-shrink leaves the
+   900px source, so its size drifts with the viewport and the text length. */
 .profile-photo {
-  margin-left: 10px;
+  flex: 0 0 clamp(210px, 20vw, 320px);
   height: fit-content;
   padding: 0;
 }
@@ -557,8 +561,11 @@ textarea:focus {
   color: #e73b3b;
 }
 .profile-photo .img {
+  display: block;
   width: 100%;
-  z-index: -3;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  object-position: center top;
 }
 .about-container .name {
   line-height: 85px;
@@ -623,12 +630,17 @@ textarea:focus {
   .about-container {
     flex-direction: column;
     align-items: center;
+    gap: 0;
+  }
+  .profile-photo {
+    flex: 0 0 auto;
+    width: 100%;
   }
   .about-container .aboutMe-text {
     text-align: center;
   }
   .img {
-    margin-top: 50px;
+    margin: 50px auto 0;
     max-width: 400px;
   }
 }
