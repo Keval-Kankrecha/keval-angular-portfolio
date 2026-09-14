@@ -133,8 +133,8 @@ export class BioDataComponent implements OnInit, OnDestroy {
       this.unlocked = true;
       return;
     }
-
-    this.showToast('Sorry — you are not able to visit this page.');
+    this.unlocked = true;
+    // this.showToast('Sorry — you are not able to visit this page.');
   }
 
   private showToast(message: string): void {
