@@ -50,7 +50,7 @@ export class BioDataComponent implements OnInit, OnDestroy {
       heading: 'Personal Details',
       fields: [
         { label: 'Date of Birth', value: '20 December 2002' },
-        { label: 'Height', value: '5\'8" (5.8 ft)' },
+        { label: 'Height', value: '5\'4" (5.4 ft)' },
         { label: 'Weight', value: '72 kg' },
         { label: 'Blood Group', value: 'O+' },
         { label: 'Caste', value: 'Kadiya' },
