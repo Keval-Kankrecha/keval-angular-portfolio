@@ -36,7 +36,7 @@ const PAD = 6;
   styleUrl: './bio-data.component.scss',
 })
 export class BioDataComponent implements OnInit, OnDestroy {
-  readonly fullName = 'Keval Kankrecha';
+  readonly fullName = 'Keval JitendraBhai Kankrecha';
   readonly tagline = 'Software Engineer';
   readonly site = 'kevalkankrecha.is-a.dev';
   /** Shared with the About section rather than duplicated. */
