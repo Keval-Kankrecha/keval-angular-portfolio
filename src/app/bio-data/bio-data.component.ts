@@ -43,7 +43,7 @@ export class BioDataComponent implements OnInit, OnDestroy {
   readonly portrait = 'assets/keval.jpg';
 
   /** Any photo that fails to load drops out; an empty strip hides the page. */
-  photos = ['assets/bio-data/photo-1.jpg', 'assets/bio-data/photo-2.jpg'];
+  photos = ['assets/bio-data/photo-1.jpg', 'assets/bio-data/keval-2.jpg'];
 
   readonly sections: BioSection[] = [
     {
@@ -98,13 +98,16 @@ export class BioDataComponent implements OnInit, OnDestroy {
       fields: [
         {
           label: 'Holdings',
-          value: ['Own house in Gondal', '5 Vigha of land in Rampara (Navagam)'],
+          value: [
+            'Own house in Gondal',
+            '5 Vigha of land in Rampara (Navagam)',
+          ],
         },
       ],
     },
   ];
 
-  unlocked = false;
+  unlocked = true;
   toastMessage = '';
 
   private toastTimer?: ReturnType<typeof setTimeout>;
