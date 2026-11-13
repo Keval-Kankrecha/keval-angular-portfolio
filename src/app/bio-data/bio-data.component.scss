@@ -476,8 +476,10 @@
     padding: 0;
   }
 
+  /* Match the photos' own 3:4 shape so a full-width frame doesn't trim their
+     sides (a 3/5 frame cut off an off-centre subject's arm). */
   .gallery.gallery--three figure {
-    aspect-ratio: 3 / 5;
+    aspect-ratio: 3 / 4;
   }
 
   .gallery.gallery--three .gallery__divider {
