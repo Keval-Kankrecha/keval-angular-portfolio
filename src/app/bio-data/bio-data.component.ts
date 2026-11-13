@@ -20,6 +20,12 @@ interface BioPhoto {
    */
   zoom?: number;
   focus?: string;
+  /**
+   * Optional CSS object-position: which part of the photo to keep when the
+   * frame's shape trims it (default centre). E.g. '100% 50%' keeps the right
+   * edge, for a subject standing right of centre.
+   */
+  position?: string;
 }
 
 /*
@@ -55,9 +61,9 @@ export class BioDataComponent implements OnInit, OnDestroy {
 
   /** Any photo that fails to load drops out; an empty strip hides the page. */
   photos: BioPhoto[] = [
-    { src: 'assets/bio-data/photo-3.jpg' },
-    // Close in on the subject; anchored at the bottom so he stays head to toe.
-    { src: 'assets/bio-data/photo-1.jpg', zoom: 1.35, focus: '50% 100%' },
+    // He stands right of centre: trim only the empty wall on the left, so his
+    // arm isn't cut and he lands near the middle of the frame.
+    { src: 'assets/bio-data/photo-3.jpg', position: '100% 50%' },
     { src: 'assets/bio-data/keval-2.jpg' },
   ];
 

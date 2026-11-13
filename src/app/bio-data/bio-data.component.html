@@ -90,6 +90,7 @@
               decoding="async"
               [style.transform]="photo.zoom ? 'scale(' + photo.zoom + ')' : null"
               [style.transform-origin]="photo.focus ?? null"
+              [style.object-position]="photo.position ?? null"
               (error)="onPhotoError(photo)"
             />
           </div>
