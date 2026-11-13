@@ -11,6 +11,17 @@ interface BioSection {
   fields: BioField[];
 }
 
+interface BioPhoto {
+  src: string;
+  /**
+   * Optional close-up: how far to enlarge the photo inside its frame, and the
+   * point (CSS transform-origin) that stays put while it grows. Use it to crop
+   * in on the subject without editing the image file.
+   */
+  zoom?: number;
+  focus?: string;
+}
+
 /*
  * NOTE: this gate is a speed bump, not security. Angular compiles this file
  * into the JavaScript bundle the browser downloads, so both the passphrase
@@ -43,7 +54,12 @@ export class BioDataComponent implements OnInit, OnDestroy {
   readonly portrait = 'assets/keval.jpg';
 
   /** Any photo that fails to load drops out; an empty strip hides the page. */
-  photos = ['assets/bio-data/photo-1.jpg', 'assets/bio-data/keval-2.jpg'];
+  photos: BioPhoto[] = [
+    { src: 'assets/bio-data/photo-3.jpg' },
+    // Close in on the subject; anchored at the bottom so he stays head to toe.
+    { src: 'assets/bio-data/photo-1.jpg', zoom: 1.35, focus: '50% 100%' },
+    { src: 'assets/bio-data/keval-2.jpg' },
+  ];
 
   readonly sections: BioSection[] = [
     {
@@ -150,7 +166,7 @@ export class BioDataComponent implements OnInit, OnDestroy {
     return Array.isArray(value) ? value : [value];
   }
 
-  onPhotoError(src: string): void {
-    this.photos = this.photos.filter((photo) => photo !== src);
+  onPhotoError(failed: BioPhoto): void {
+    this.photos = this.photos.filter((photo) => photo !== failed);
   }
 }

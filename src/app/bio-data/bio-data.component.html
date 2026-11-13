@@ -78,16 +78,29 @@
       <div class="divider" aria-hidden="true">&#10022;</div>
     </header>
 
-    <div class="gallery">
-      <figure *ngFor="let photo of photos">
-        <img
-          [src]="photo"
-          [alt]="fullName"
-          loading="lazy"
-          decoding="async"
-          (error)="onPhotoError(photo)"
-        />
-      </figure>
+    <div class="gallery" [class.gallery--three]="photos.length === 3">
+      <ng-container *ngFor="let photo of photos; let i = index">
+        <figure>
+          <!-- The frame clips a zoomed photo so it never spills over the border. -->
+          <div class="frame">
+            <img
+              [src]="photo.src"
+              [alt]="fullName"
+              loading="lazy"
+              decoding="async"
+              [style.transform]="photo.zoom ? 'scale(' + photo.zoom + ')' : null"
+              [style.transform-origin]="photo.focus ?? null"
+              (error)="onPhotoError(photo)"
+            />
+          </div>
+        </figure>
+        <!-- Separates the pair on top from the single photo below. -->
+        <div
+          class="divider gallery__divider"
+          aria-hidden="true"
+          *ngIf="i === 1 && photos.length === 3"
+        >&#10022;</div>
+      </ng-container>
     </div>
 
     <ng-container *ngTemplateOutlet="foot"></ng-container>
