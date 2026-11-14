@@ -15,7 +15,7 @@ $font:   'Courier New', Courier, monospace;
   padding: 0 0 2.5rem;
   cursor: pointer;
   overflow: hidden;
-  transition: opacity 0.55s ease, transform 0.55s ease;
+  transition: opacity 0.35s ease, transform 0.35s ease;
 
   &.exit {
     opacity: 0;

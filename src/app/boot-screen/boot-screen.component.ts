@@ -39,34 +39,34 @@ export class BootScreenComponent implements OnInit, OnDestroy {
   private buildLines(): BootLine[] {
     return [
       { text: 'KEVAL/CORP SYSTEMS — v3.0.0', type: 'dim', delay: 0 },
-      { text: 'Boot sequence initiated...', type: 'normal', delay: 300 },
+      { text: 'Boot sequence initiated...', type: 'normal', delay: 150 },
 
-      { text: '', type: 'dim', delay: 500 },
+      { text: '', type: 'dim', delay: 250 },
 
-      { text: 'Initializing core systems...', type: 'normal', delay: 700 },
+      { text: 'Initializing core systems...', type: 'normal', delay: 350 },
       {
         text: 'CPU / RAM / Network  ............. [OK]',
         type: 'normal',
-        delay: 1000,
+        delay: 500,
       },
 
-      { text: '', type: 'dim', delay: 1200 },
+      { text: '', type: 'dim', delay: 600 },
 
       {
         text: `Session ID: ${this.genId()}-${this.genId()}`,
         type: 'normal',
-        delay: 1600,
+        delay: 800,
       },
       {
         text: `Browser ID: ${this.genId()}-${this.genId()}`,
         type: 'normal',
-        delay: 1600,
+        delay: 800,
       },
 
-      { text: '', type: 'dim', delay: 1800 },
+      { text: '', type: 'dim', delay: 900 },
 
-      { text: 'Access Granted.', type: 'success', delay: 2000 },
-      { text: 'Welcome to my portfolio.', type: 'success', delay: 2200 },
+      { text: 'Access Granted.', type: 'success', delay: 1000 },
+      { text: 'Welcome to my portfolio.', type: 'success', delay: 1100 },
     ];
   }
 
@@ -87,7 +87,7 @@ export class BootScreenComponent implements OnInit, OnDestroy {
   }
 
   private startBoot(): void {
-    const totalTime = this.allLines[this.allLines.length - 1].delay + 1900;
+    const totalTime = this.allLines[this.allLines.length - 1].delay + 700;
     const labels = ['PROCESSING', 'GRANTING ACCESS'];
 
     const startTime = Date.now();
@@ -135,12 +135,12 @@ export class BootScreenComponent implements OnInit, OnDestroy {
       text: l.text,
       type: l.type,
     }));
-    setTimeout(() => this.exitBoot(), 400);
+    setTimeout(() => this.exitBoot(), 250);
   }
 
   private exitBoot(): void {
     this.isExiting = true;
-    setTimeout(() => this.bootComplete.emit(), 600);
+    setTimeout(() => this.bootComplete.emit(), 400);
   }
 
   private clearAll(): void {
