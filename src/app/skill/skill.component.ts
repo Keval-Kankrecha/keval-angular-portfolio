@@ -37,7 +37,7 @@ export class SkillComponent {
       ],
     },
     {
-      category: 'Platforms & Tools',
+      category: 'Tools & DevOps',
       items: [
         { title: 'Docker', icon: 'simpleDocker', displayValue: 'Docker' },
         { title: 'Redis', icon: 'simpleRedis', displayValue: 'Redis' },
